@@ -1,0 +1,33 @@
+@font-face {
+	font-family: 'Julia';
+	src: url('https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.053/JuliaMono-Medium.woff2');
+}
+
+.xed * {
+	margin: 0;
+	padding: 0;
+	font: min(1.8vw, 1.8vh)/1em 'Julia';
+	vertical-align: top;
+}
+
+.xed, .xed td {
+	border: 1px dotted #bbb;
+}
+
+.xed td:first-child {
+	text-align: center;
+}
+
+.xed textarea {
+	height: 1em;
+	padding: 1px;
+	resize: none;
+	overflow: hidden;
+	border: none;
+}
+
+.xed textarea:focus {
+	outline: transparent !important;
+	background-color: #fff5d9;
+	box-shadow: 0 0 10px #39e;
+}

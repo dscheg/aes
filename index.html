@@ -1,0 +1,124 @@
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
+<!-- SPDX-FileCopyrightText: (C) 2024 Dmitriy Titarenko https://github.com/dscheg -->
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AES Crypto Playground</title>
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self';script-src 'self' cdnjs.cloudflare.com;font-src 'self' cdnjs.cloudflare.com;"/>
+	<meta name="viewport" content="viewport-fit=cover,width=device-width,initial-scale=1.0,user-scalable=no"/>
+	<link href="hex.css" rel="stylesheet" type="text/css"/>
+	<link href="aes.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="theme">&#127769;&#xFE0E;</div>
+
+<h1>AES Crypto Playground</h1>
+<div class="note">Play around with AES encryption and decryption to learn about the different complexities of symmetric encryption implementations. This page uses only client-side cryptography and does not send data anywhere. But still, do not play with sensitive data. The playground provided "AS IS" without any warranties</div>
+<br/>
+
+<table class="params">
+	<tr><td>Mode</td><td><select id="mode">
+		<option value="CBC">CBC (default)</option>
+		<option value="ECB">ECB</option>
+		<option value="CTR">CTR</option>
+		<option value="OFB">OFB</option>
+		<option value="CFB">CFB</option>
+	</select></td>
+	<td id="mode-img" rowspan=6><select id="dir">
+		<option value="Decryption">Decryption</option>
+		<option value="Encryption">Encryption</option>
+	</td></tr>
+	<tr><td>Padding</td><td><select id="padding">
+		<option value="Pkcs7">PKCS7 (default)</option>
+		<option value="AnsiX923">ANSI X9.23</option>
+		<option value="Iso10126">ISO 10126</option>
+		<option value="Iso97971">ISO/IEC 9797-1</option>
+		<option value="ZeroPadding">Zero Padding</option>
+		<option value="NoPadding">No Padding</option>
+	</select></td></tr>
+	<tr><td>IV</td><td><input type="text" id="iv" maxlength=32 pattern="[0-9a-fA-F]*"/></td></tr>
+	<tr><td>Key</td><td><input type="text" id="key" maxlength=64 pattern="[0-9a-fA-F]*"/></td></tr>
+	<tr><td>Key&nbsp;Size</td><td><input type="text" id="keysize" disabled value="128 bit"/></td></tr>
+	<tr><td>Block&nbsp;Size</td><td><input type="text" id="blocksize" disabled value="128 bit"/></td></tr>
+</table>
+
+<h3>Plain</h3>
+<table class="xed plain">
+	<tr>
+		<td>
+			<input type="file" class="xed-load-file" hidden/>
+			<button class="xed-load" title="Load">📂&#xFE0E;</button>
+			<button class="xed-save" title="Save">💾&#xFE0E;</button>
+		</td>
+		<td class="xed-top"></td>
+	</tr>
+	<tr>
+		<td><textarea class="xed-left" cols=8 wrap="off" spellcheck="false" readonly>00000000</textarea></td>
+		<td><textarea class="xed-hex" cols=47 wrap="off" spellcheck="false"></textarea>
+		<td><textarea class="xed-right" cols=16 wrap="off" autofocus spellcheck="false"></textarea></td>
+	</tr>
+</table>
+
+<h3>Cipher</h3>
+<table class="xed cipher">
+	<tr>
+		<td>
+			<input type="file" class="xed-load-file" hidden/>
+			<button class="xed-load" title="Load">📂&#xFE0E;</button>
+			<button class="xed-save" title="Save">💾&#xFE0E;</button>
+		</td>
+		<td class="xed-top"></td>
+	</tr>
+	<tr>
+		<td><textarea class="xed-left" cols=8 wrap="off" spellcheck="false" readonly>00000000</textarea></td>
+		<td><textarea class="xed-hex" cols=47 wrap="off" spellcheck="false"></textarea>
+		<td><textarea class="xed-right" cols=16 wrap="off" autofocus spellcheck="false"></textarea></td>
+	</tr>
+</table>
+
+<h3>Decrypted</h3>
+<table class="xed decrypt">
+	<tr>
+		<td>
+			<input type="file" class="xed-load-file" hidden/>
+			<button class="xed-load" title="Load">📂&#xFE0E;</button>
+			<button class="xed-save" title="Save">💾&#xFE0E;</button>
+		</td>
+		<td class="xed-top"></td>
+	</tr>
+	<tr>
+		<td><textarea class="xed-left" cols=8 wrap="off" spellcheck="false" readonly>00000000</textarea></td>
+		<td><textarea class="xed-hex" cols=47 wrap="off" spellcheck="false" readonly disabled></textarea>
+		<td><textarea class="xed-right" cols=16 wrap="off" autofocus spellcheck="false" readonly disabled></textarea></td>
+	</tr>
+</table>
+
+<h3 class="grayed">XOR Lines</h3>
+<table class="xed xor">
+	<tr>
+		<td>
+			<input type="file" class="xed-load-file" hidden/>
+			<button class="xed-load" title="Load">📂&#xFE0E;</button>
+			<button class="xed-save" title="Save">💾&#xFE0E;</button>
+		</td>
+		<td class="xed-top"></td>
+	</tr>
+	<tr>
+		<td><textarea class="xed-left" cols=8 wrap="off" spellcheck="false" readonly>00000000</textarea></td>
+		<td><textarea class="xed-hex" cols=47 wrap="off" spellcheck="false"></textarea>
+		<td><textarea class="xed-right" cols=16 wrap="off" autofocus spellcheck="false"></textarea></td>
+	</tr>
+</table>
+
+<h3>Result</h3>
+<div id="result">n/a</div>
+
+<div class="copy"><a href="https://github.com/dscheg/aes">github.com/dscheg/aes</a></div>
+
+<script src="hex.js"></script>
+<!-- Default subtle crypto implementation has some limitations, so use crypto-js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="aes.js"></script>
+</html>

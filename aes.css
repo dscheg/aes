@@ -1,0 +1,132 @@
+html {
+	background: #fff;
+	color: #222;
+}
+
+html.night {
+	background: #ddd;
+	filter: invert(1);
+}
+
+body {
+	font: min(1.8vw, 1.8vh) 'Segoe UI','Helvetica','Arial';
+}
+
+a {
+	color: #59f;
+}
+
+h3 {
+	margin: 20px 0 4px 0;
+}
+
+input, select {
+	font: min(1.8vw, 1.8vh) 'Julia';
+	margin-top: 2px;
+}
+
+input {
+	width: min(18vw, 18vh);
+	text-overflow: ellipsis;
+}
+
+#theme {
+	user-select: none;
+	cursor: pointer;
+	position: fixed;
+	padding: 4px 8px;
+	right: 0;
+	top: 0;
+}
+
+.params {
+	width: min(80vw, 80vh);
+}
+
+#dir {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 50%;
+}
+
+#mode-img {
+	background: 10px center / contain no-repeat;
+	filter: drop-shadow(0px 0px 6px #f50);
+	position: relative;
+	width: 99%;
+}
+#mode-img.mode-CBC-Decryption {
+	background-image: url("modes/CBC_decryption.min.svg");
+}
+#mode-img.mode-ECB-Decryption {
+	background-image: url("modes/ECB_decryption.min.svg");
+}
+#mode-img.mode-CTR-Decryption {
+	background-image: url("modes/CTR_decryption.min.svg");
+}
+#mode-img.mode-OFB-Decryption {
+	background-image: url("modes/OFB_decryption.min.svg");
+}
+#mode-img.mode-CFB-Decryption {
+	background-image: url("modes/CFB_decryption.min.svg");
+}
+#mode-img.mode-CBC-Encryption {
+	background-image: url("modes/CBC_encryption.min.svg");
+}
+#mode-img.mode-ECB-Encryption {
+	background-image: url("modes/ECB_encryption.min.svg");
+}
+#mode-img.mode-CTR-Encryption {
+	background-image: url("modes/CTR_encryption.min.svg");
+}
+#mode-img.mode-OFB-Encryption {
+	background-image: url("modes/OFB_encryption.min.svg");
+}
+#mode-img.mode-CFB-Encryption {
+	background-image: url("modes/CFB_encryption.min.svg");
+}
+
+.xed.cipher button {
+	display: none;
+}
+.xed.decrypt button {
+	display: none;
+}
+
+.xor {
+	opacity: 0.5;
+}
+.xor:has(textarea:focus) {
+	opacity: 1;
+}
+.grayed {
+	color: #777;
+}
+
+#result {
+	white-space: pre;
+	font: min(1.8vw, 1.8vh)/1em 'Julia';
+}
+.night #result {
+	filter: invert(1) brightness(0.5);
+}
+#result.error {
+	color: red;
+}
+#result.success {
+	color: green;
+}
+
+.note {
+	font-size: 70%;
+	font-style: italic;
+	max-width: min(80vw, 80vh);
+	text-align: justify;
+}
+.copy {
+	position: fixed;
+	font-size: 70%;
+	bottom: 8px;
+	right: 8px;
+}

@@ -19,7 +19,13 @@ const $xor = $(".xed.xor");
 
 const $result = $("#result");
 
-$("#theme").onclick = () => $("html").classList.toggle("night");
+$("#theme").onclick = () => {
+	$("html").classList.toggle("night");
+	localStorage.setItem("night", $("html").classList.contains("night"));
+}
+
+if(localStorage.getItem("night") == "true")
+	$("#theme").click();
 
 const update = () => $plain.dispatchEvent(new Event("change"));
 const setResult = (isOk, text) => {

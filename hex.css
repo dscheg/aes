@@ -28,8 +28,10 @@
 
 .xed textarea:focus {
 	outline: transparent !important;
+}
+.xed textarea:read-write:focus {
 	background-color: #fff5d9;
-	box-shadow: 0 0 10px #39e;
+	box-shadow: 0 0 10px #f50;
 }
 
 .xed-top, .xed-left, .xed-size {

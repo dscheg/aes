@@ -26,11 +26,7 @@
 		<option value="CTR">CTR</option>
 		<option value="OFB">OFB</option>
 		<option value="CFB">CFB</option>
-	</select></td>
-	<td id="mode-img" rowspan=7><select id="dir">
-		<option value="Decryption">Decryption</option>
-		<option value="Encryption">Encryption</option>
-	</td></tr>
+	</select></td><td id="mode-img" rowspan=8></td></tr>
 	<tr><td>Padding</td><td><select id="padding">
 		<option value="Pkcs7">PKCS7 (default)</option>
 		<option value="AnsiX923">ANSI X9.23</option>
@@ -49,6 +45,10 @@
 		<option value="deflate">Deflate</option>
 		<option value="gzip">Gzip</option>
 	</select></td></tr>
+	<tr><td class="dir-td" colspan=3><select id="dir">
+		<option value="Decryption">Decryption</option>
+		<option value="Encryption">Encryption</option>
+	</td></tr>
 </table>
 
 <h3>Plain</h3>

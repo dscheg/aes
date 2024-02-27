@@ -1,6 +1,7 @@
 html {
-	background: #fff;
 	color: #222;
+	background: #fff;
+	transition: 0.2s filter linear;
 }
 
 html.night {
@@ -20,9 +21,9 @@ h3 {
 	margin: 20px 0 4px 0;
 }
 
-input, select {
+input, select, textarea, button {
+	color: #222;
 	font: min(1.8vw, 1.8vh) 'Julia';
-	margin-top: 2px;
 }
 
 input {
@@ -43,6 +44,9 @@ input {
 	width: min(80vw, 80vh);
 }
 
+.dir-td {
+	position: relative;
+}
 #dir {
 	position: absolute;
 	bottom: 4px;
@@ -51,10 +55,16 @@ input {
 }
 
 #mode-img {
-	background: 10px center / contain no-repeat;
-	filter: drop-shadow(0px 0px 6px #f50);
+	transition: 0.2s filter linear;
+	background: 10px 0 / contain no-repeat;
+	filter: drop-shadow(0px 0px 10px #07f);
 	position: relative;
 	width: 99%;
+	translate: 0 -4px;
+	transform: scaleY(1.1);
+}
+.night #mode-img {
+	filter: drop-shadow(0px 0px 10px #f50);
 }
 #mode-img.mode-CBC-Decryption {
 	background-image: url("modes/CBC_decryption.min.svg");
@@ -102,6 +112,7 @@ input {
 }
 
 #result {
+	transition: 0.2s filter linear;
 	font: min(1.8vw, 1.8vh)/1em 'Julia';
 	width: min(80vw, 78vh);
 	resize: none;

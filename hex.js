@@ -43,8 +43,10 @@ $$(".xed").forEach($xed => {
 		$a.click();
 	};
 
+	const $size = $(".xed-size", $xed);
 	const $left = $(".xed-left", $xed);
 	const $right = $(".xed-right", $xed);
+	$right.value = '';
 
 	$right.oninput = function() {
 		const pos = $right.value
@@ -81,10 +83,13 @@ $$(".xed").forEach($xed => {
 			.map(i => (1E7 + (16 * i).toString(16)).slice(-8))
 			.join('\n');
 
-		$right.value = range(Math.floor(($hex.value.length + 1) / 3))
+		const len = Math.floor(($hex.value.length + 1) / 3);
+		$right.value = range(len)
 			.map(i => parseInt($hex.value.substr(i * 3, 2), 16))
 			.map(c => String.fromCodePoint(c + (0x20 <= c && c < 0x7F ? 0 : 0xF000)))
 			.join('').replace(/(.{16})(?=.)/g, '$1\n');
+
+		$size.textContent = 'size=' + len;
 
 		const newpos = pos > 0 && [' ', '\n'].includes($hex.value[pos - 1]) ? pos - 1 : pos;
 		$hex.setSelectionRange(newpos, newpos);

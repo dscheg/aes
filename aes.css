@@ -45,8 +45,8 @@ input {
 
 #dir {
 	position: absolute;
-	bottom: 0;
-	right: 0;
+	bottom: 4px;
+	right: 4px;
 	font-size: 50%;
 }
 
@@ -87,10 +87,7 @@ input {
 	background-image: url("modes/CFB_encryption.min.svg");
 }
 
-.xed.cipher button {
-	display: none;
-}
-.xed.decrypt button {
+.xed.decrypt .xed-load {
 	display: none;
 }
 
@@ -100,16 +97,21 @@ input {
 .xor:has(textarea:focus) {
 	opacity: 1;
 }
-.grayed {
+.grayed, .grayed textarea {
 	color: #777;
 }
 
 #result {
-	white-space: pre;
 	font: min(1.8vw, 1.8vh)/1em 'Julia';
+	width: min(80vw, 78vh);
+	resize: none;
+	border: 1px dotted #bbb;
+}
+#result:focus {
+	outline: transparent !important;
 }
 .night #result {
-	filter: invert(1) brightness(0.5);
+	filter: hue-rotate(180deg);
 }
 #result.error {
 	color: red;

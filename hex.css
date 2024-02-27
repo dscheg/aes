@@ -31,3 +31,11 @@
 	background-color: #fff5d9;
 	box-shadow: 0 0 10px #39e;
 }
+
+.xed-top, .xed-left, .xed-size {
+	color: #aaa;
+}
+
+.xed-size {
+	text-align: right;
+}

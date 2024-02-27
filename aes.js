@@ -81,6 +81,7 @@ $compress.oninput = e => {
 	$deflate.hidden = hide;
 	update();
 };
+$compress.oninput();
 
 //const importKey = () => crypto.subtle.importKey("raw", fromHex($key.value), {name: "AES-CBC"}, true, ["encrypt", "decrypt"]);
 

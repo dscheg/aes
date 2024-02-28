@@ -29,7 +29,10 @@ $$(".xed").forEach($xed => {
 			return;
 		let file = new FileReader();
 		file.readAsArrayBuffer(this.files[0]);
-		file.onload = () => $xed.setData(new Uint8Array(file.result));
+		file.onload = () => {
+			$xed.setData(new Uint8Array(file.result));
+			this.value = null;
+		}
 	};
 
 	$(".xed-load", $xed).onclick = function() {

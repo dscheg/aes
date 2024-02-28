@@ -155,18 +155,13 @@ $cipher.addEventListener("change", e => {
 
 $xor.addEventListener("change", e => {
 	const data = $xor.getData();
-	if((data.length & 15) !== 0) {
-		setResult(false, "Size must be multiple to AES block size");
-		return;
-	}
 
 	let result = new Uint8Array(16);
-	for(var row = 0; row < (data.length >> 4); row++)
-	for(var col = 0; col < 16; col++) {
-		result[col] ^= data[(row << 4) + col];
-	}
+	for(var idx = 0; idx < data.length; idx++)
+		result[idx & 15] ^= data[idx];
 
-	setResult(true, toHex(result).replace(/([0-9A-F]{2})/ig, '$1 '));
+	$("#xor-hex").value = toHex(result).replace(/([0-9A-F]{2})(?=.)/ig, '$1 ');
+	$("#xor-right").value = Array.from(result).map(c => String.fromCodePoint(c + (0x20 <= c && c < 0x7F ? 0 : 0xF000))).join('');
 }, false);
 
 $plain.setDataHex(localStorage.getItem("hex") || toHex(new TextEncoder().encode('{"name":"hack"}')));

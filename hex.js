@@ -89,7 +89,7 @@ $$(".xed").forEach($xed => {
 			.map(c => String.fromCodePoint(c + (0x20 <= c && c < 0x7F ? 0 : 0xF000)))
 			.join('').replace(/(.{16})(?=.)/g, '$1\n');
 
-		$size.textContent = 'size=' + len;
+		$size.textContent = 'len=' + len;
 
 		const newpos = pos > 0 && [' ', '\n'].includes($hex.value[pos - 1]) ? pos - 1 : pos;
 		$hex.setSelectionRange(newpos, newpos);
